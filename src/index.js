@@ -22,7 +22,7 @@ const isAddedKey = (key, obj1, obj2) => !_.has(obj1, key) && _.has(obj2, key);
 const isDeletedKey = (key, obj1, obj2) => _.has(obj1, key) && !_.has(obj2, key);
 const hasSameValue = (key, obj1, obj2) => obj1[key] === obj2[key];
 
-const formatLine = (symbol, key, value) => `  ${symbol} ${key} : ${value}`;
+const formatLine = (symbol, key, value) => `  ${symbol} ${key}: ${value}`;
 
 export default (filename1, filename2) => {
   const obj1 = getData(filename1);
@@ -43,5 +43,5 @@ export default (filename1, filename2) => {
     }
   });
 
-  return `{\n${result.join("\n")} \n}`;
+  return `{\n${result.join("\n")}\n}`;
 };
