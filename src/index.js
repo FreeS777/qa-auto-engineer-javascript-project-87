@@ -1,8 +1,8 @@
+import _ from 'lodash';
 import { readFileSync } from 'fs';
 import { extname, resolve } from 'path';
 import { cwd } from 'process';
 import parser from './utils/parsers.js';
-import _ from 'lodash';
 
 const getData = (file) => {
   const fileType = extname(file);
@@ -15,7 +15,7 @@ const symbols = {
   add: '+',
   del: '-',
   same: ' ',
-}
+};
 
 const isSharedKey = (key, obj1, obj2) => _.has(obj1, key) && _.has(obj2, key);
 const isAddedKey = (key, obj1, obj2) => !_.has(obj1, key) && _.has(obj2, key);
@@ -41,7 +41,8 @@ export default (filename1, filename2) => {
     if (isDeletedKey(key, obj1, obj2)) {
       return formatLine(symbols.del, key, obj1[key]);
     }
+    return '';
   });
 
-  return `{\n${result.join("\n")}\n}`;
+  return `{\n${result.join('\n')}\n}`;
 };
