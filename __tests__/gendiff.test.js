@@ -16,4 +16,13 @@ test('difference two JSON files format signs', () => {
 
   const actual = genDiff(pathFirstJson, pathSecondJson);
   expect(actual).toBe(result);
-})
+});
+
+test('difference two YAML files format signs', () => {
+  const pathFirstYaml = getFixturePath('file1.yml');
+  const pathSecondYaml = getFixturePath('file2.yml');
+  const result = readFile('resultYaml').toString();
+
+  const actual = genDiff(pathFirstYaml, pathSecondYaml);
+  expect(actual).toBe(result);
+});
