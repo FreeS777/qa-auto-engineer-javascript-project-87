@@ -4,7 +4,7 @@ import { extname, resolve } from 'path';
 import { cwd } from 'process';
 import parser from './utils/parsers.js';
 
-const getData = (file) => {
+export const getData = (file) => {
   const fileType = extname(file);
   const normalizedDist = resolve(cwd(), '__fixtures__', file);
   const data = readFileSync(normalizedDist, 'utf-8');
@@ -17,10 +17,10 @@ const symbols = {
   same: ' ',
 };
 
-const isSharedKey = (key, obj1, obj2) => _.has(obj1, key) && _.has(obj2, key);
-const isAddedKey = (key, obj1, obj2) => !_.has(obj1, key) && _.has(obj2, key);
-const isDeletedKey = (key, obj1, obj2) => _.has(obj1, key) && !_.has(obj2, key);
-const hasSameValue = (key, obj1, obj2) => obj1[key] === obj2[key];
+export const isSharedKey = (key, obj1, obj2) => _.has(obj1, key) && _.has(obj2, key);
+export const isAddedKey = (key, obj1, obj2) => !_.has(obj1, key) && _.has(obj2, key);
+export const isDeletedKey = (key, obj1, obj2) => _.has(obj1, key) && !_.has(obj2, key);
+export const hasSameValue = (key, obj1, obj2) => obj1[key] === obj2[key];
 
 const formatLine = (symbol, key, value) => `  ${symbol} ${key}: ${value}`;
 
