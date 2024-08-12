@@ -7,22 +7,26 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const getFixturePath = (filename) => join(__dirname, '..', '__fixtures__', filename);
-const readFile = (filename) => readFileSync(getFixturePath(filename));
+const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
-test('difference two JSON files format signs', () => {
-  const pathFirstJson = getFixturePath('file1.json');
-  const pathSecondJson = getFixturePath('file2.json');
-  const result = readFile('resultJson').toString();
+describe('genDiff', () => {
+  const jsonPathFile1 = getFixturePath('file1.json');
+  const jsonPathFile2 = getFixturePath('file2.json');
+  const yamlPathFile1 = getFixturePath('file1.yml');
+  const yamlPathFile2 = getFixturePath('file2.yml');
 
-  const actual = genDiff(pathFirstJson, pathSecondJson);
-  expect(actual).toBe(result);
-});
+  const diffResult = genDiff(jsonPathFile1, jsonPathFile2);
+  const plainDiffResult = genDiff(yamlPathFile1, yamlPathFile2, 'plain');
+  const resultDiffJson = genDiff(jsonPathFile1, jsonPathFile2, 'json');
 
-test('difference two YAML files format signs', () => {
-  const pathFirstYaml = getFixturePath('file1.yml');
-  const pathSecondYaml = getFixturePath('file2.yml');
-  const result = readFile('resultYaml').toString();
-
-  const actual = genDiff(pathFirstYaml, pathSecondYaml);
-  expect(actual).toBe(result);
+  const expectedDefault = readFile('result');
+  const expectedPlain = readFile('resultPlain');
+  const expectedJson = readFile('result.json');
+  test.each([
+    [expectedDefault, diffResult],
+    [expectedPlain, plainDiffResult],
+    [expectedJson, resultDiffJson],
+  ])('to compare two JSON/yaml files', (expected, result) => {
+    expect(result).toEqual(expected);
+  });
 });
