@@ -9,7 +9,7 @@ Example: `gendiff file1.json file2.json`
 [![asciicast](https://asciinema.org/a/gBbU46RPXR7f1O0JSYhItnwJm.svg)](https://asciinema.org/a/gBbU46RPXR7f1O0JSYhItnwJm)
 
 To compare two flat YAML files, call the utility.
-Example: `file1.yaml file2.yaml`
+Example: `gendiff file1.yaml file2.yaml`
 [![asciicast](https://asciinema.org/a/xaq3OPANlupfJySfHm4YMhnxl.svg)](https://asciinema.org/a/xaq3OPANlupfJySfHm4YMhnxl)
 
 Comparison output of plain style.
