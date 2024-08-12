@@ -1,8 +1,9 @@
 import _ from 'lodash';
 
 export default (firstObj, secondObj) => {
-  const allKeys = _.union(_.keys(firstObj), _.keys(secondObj)).sort();
-  return allKeys.map((key) => {
+  const allKeys = _.union(_.keys(firstObj), _.keys(secondObj));
+  const sortedKeys = _.sortBy(allKeys);
+  return sortedKeys.map((key) => {
     const pastValue = firstObj[key];
     const currentValue = secondObj[key];
     if (!_.has(secondObj, key)) return { type: 'deleted', key, pastValue };
