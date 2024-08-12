@@ -11,7 +11,7 @@ export const getData = (file) => {
   const data = readFileSync(normalizedDist, 'utf-8');
   return parser(data, fileType);
 };
-export default (filename1, filename2, format = 'default') => {
+export default (filename1, filename2, format = 'stylish') => {
   const firstObj = getData(filename1);
   const secondObj = getData(filename2);
   const structure = getStructure(firstObj, secondObj);
