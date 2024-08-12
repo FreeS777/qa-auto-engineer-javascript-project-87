@@ -2,7 +2,6 @@
 
 import { program } from 'commander';
 import genDiff from '../src/index.js';
-import getFormatHandler from '../src/formatters/index.js';
 
 program
   .name('gendiff')
@@ -11,12 +10,10 @@ program
 
 program
   .arguments('<filepath1> <filepath2>')
-  .option('-f, --format <type>', 'output format')
+  .option('-f, --format <type>', 'output format', 'default')
   .action((filepath1, filepath2) => {
-    const genDiffResult = genDiff(filepath1, filepath2);
     const { format } = program.opts();
-    const formatHandler = getFormatHandler(format);
-    const result = format ? formatHandler(filepath1, filepath2) : genDiffResult;
+    const result = genDiff(filepath1, filepath2, format);
     console.log(result);
   })
   .parse();
