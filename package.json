@@ -1,5 +1,5 @@
 {
-  "name": "project-two",
+  "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/FreeS777/qa-auto-engineer-javascript-project-87/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/FreeS777/qa-auto-engineer-javascript-project-87/actions)",
   "main": "src/index.js",
